@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker Mod Manager v2 - Ultimate Mod Management Tool</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Enhance your Cookie Clicker experience with Cookie Clicker Mod Manager v2. Install, manage, and customize mods easily!">
+    <meta name="keywords" content="cookie clicker mods, mod manager, cookie clicker mod loader, cookie clicker plugins">
+    <meta name="author" content="Cookie Clicker Advisor">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Cookie Clicker Advisor - Smart Gaming Assistant">
+    <meta property="og:description" content="Level up your Cookie Clicker game with intelligent recommendations and strategies">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="cca_screenshot.webp">
+    <meta property="og:image:alt" content="Cookie Clicker Advisor Screenshot">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cookie Clicker Advisor - Smart Gaming Assistant">
+    <meta name="twitter:description" content="Level up your Cookie Clicker game with intelligent recommendations and strategies">
+    <meta name="twitter:image" content="cca_screenshot.webp">
+    <meta name="twitter:image:alt" content="Cookie Clicker Advisor Screenshot">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Font Awesome -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Font Merriweather -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Critical CSS - những styles cần thiết cho above the fold content */
+        .dark-theme {
+            background: #1a1a1a; /* Fallback color trước khi background image load */
+        }
+        
+        /* Lazy load background image */
+        .dark-theme.loaded {
+            background: url('https://cookieclicker.me/img/bgBlue.webp');
+        }
+
+        /* Section spacing adjustment */
+        section {
+            padding: 60px 0;
+        }
+
+        /* Dark navbar */
+        .navbar {
+            background: rgba(0,0,0,0.85) !important;
+            border-bottom: 2px solid #4b2c23;
+            padding: 15px 0;
+        }
+
+        /* Hero section styling */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)),
+                        url('https://cookieclicker.me/img/bgBlue.webp');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            border-bottom: 3px solid #4b2c23;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(226,182,88,0.1) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        .hero-section .display-4 {
+            color: #e2b658;
+            font-family: 'Merriweather', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .hero-section .lead {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin-bottom: 2.5rem;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .hero-section .btn-custom {
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-section .chrome-logo {
+            height: 24px;
+            width: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Thêm hiệu ứng hover cho button */
+        .hero-section .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(226,182,88,0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+            }
+
+            .hero-section .display-4 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section .lead {
+                font-size: 1.2rem;
+            }
+
+            .hero-section .btn-custom {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+        }
+
+        /* Feature sections - improve spacing */
+        .feature-row {
+            background: rgba(0,0,0,0.75);
+            padding: 60px 0;
+            border-bottom: 2px solid #4b2c23;
+        }
+
+        .feature-row:nth-child(even) {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .feature-content {
+            padding: 30px;
+        }
+
+        .feature-content h3 {
+            color: #e2b658;
+            font-family: 'Merriweather', serif;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .feature-content p {
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Custom button styles */
+        .btn-custom {
+            background: linear-gradient(to bottom, #e8c766 0%, #b88430 100%);
+            border: 2px solid #4b2c23;
+            color: #4b2c23;
+            font-weight: bold;
+            padding: 10px 25px;
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to bottom, #f3d677 0%, #c89441 100%);
+            color: #4b2c23; /* Keep text color unchanged on hover */
+            border-color: #4b2c23;
+        }
+
+        /* Testimonial cards - improve contrast */
+        .testimonial-card {
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #4b2c23;
+            color: #fff;
+            padding: 25px;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card h4 {
+            color: #e2b658;
+            margin: 15px 0;
+        }
+
+        .rating {
+            color: #ffd700;
+            margin: 15px 0;
+        }
+
+        /* FAQ section - improve contrast */
+        .faq-section {
+            background: rgba(0,0,0,0.75);
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #4b2c23;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .faq-question {
+            color: #e2b658;
+            padding: 20px;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            color: #fff;
+            padding: 0 20px 20px;
+            line-height: 1.6;
+        }
+
+        /* Section titles - improve visibility */
+        .section-title {
+            color: #e2b658;
+            font-family: 'Merriweather', serif;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+            margin-bottom: 50px;
+        }
+
+        /* How It Works section */
+        #how-it-works {
+            background: rgba(0,0,0,0.75);
+            border-bottom: 2px solid #4b2c23;
+        }
+
+        #how-it-works h2 {
+            color: #e2b658;
+            font-family: 'Merriweather', serif;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+        }
+
+        #how-it-works h3 {
+            color: #e2b658;
+            font-family: 'Merriweather', serif;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+        }
+
+        .list-group-item {
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: 1px solid #4b2c23;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateX(10px);
+        }
+
+        /* Screenshot container */
+        .screenshot-container {
+            background: rgba(0,0,0,0.6);
+            padding: 20px;
+            border: 2px solid #4b2c23;
+            border-radius: 10px;
+        }
+
+        .screenshot-container img {
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.9) !important;
+            border-top: 2px solid #4b2c23;
+            padding: 30px 0;
+        }
+
+        /* Feature icon - size and color adjustments */
+        .feature-icon {
+            font-size: 4.5rem;  /* Increase icon size */
+            color: #e2b658;     /* Match the golden theme */
+            margin-bottom: 20px;
+        }
+
+        /* Feature circle container */
+        .feature-circle {
+            background: rgba(0,0,0,0.6);
+            border: 2px solid #4b2c23;
+            border-radius: 50%;
+            width: 320px;        /* Increase circle size */
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .feature-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(226, 182, 88, 0.3);
+        }
+
+        /* Common section styles */
+        .content-section {
+            background: rgba(0,0,0,0.75);
+            border-bottom: 2px solid #4b2c23;
+            padding: 80px 0;
+        }
+
+        .content-section h2 {
+            color: #e2b658;
+            font-family: 'Merriweather', serif;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .content-section h3 {
+            color: #e2b658;
+            font-family: 'Merriweather', serif;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+        }
+
+        .content-section p {
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Content container */
+        .content-container {
+            background: rgba(0,0,0,0.6);
+            border: 2px solid #4b2c23;
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .content-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(226, 182, 88, 0.2);
+        }
+
+        /* Feature icon */
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #e2b658;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        /* List items */
+        .list-group-item {
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: 1px solid #4b2c23;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateX(10px);
+        }
+
+        /* Feature circle container */
+        .feature-circle {
+            display: none;
+        }
+
+        /* Feature title layout */
+        .feature-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-title h3 {
+            margin: 0;
+        }
+
+        /* Alternating section backgrounds */
+        .content-section:nth-child(odd) {
+            background: rgba(0,0,0,0.8);
+        }
+        
+        .content-section:nth-child(even) {
+            background: rgba(0,0,0,0.7);
+        }
+
+        /* Navbar styles */
+        .navbar-brand {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            color: #e2b658 !important;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+        }
+
+        /* FAQ styles update */
+        .faq-answer {
+            display: none;
+            padding: 20px;
+            color: #fff;
+            border-top: 1px solid #4b2c23;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-question {
+            cursor: pointer;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer update */
+        footer {
+            background: #000 !important;
+        }
+
+        /* Supported sites section */
+        .supported-sites {
+            margin-top: 30px;
+        }
+
+        .supported-sites a {
+            color: #e2b658;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .supported-sites a:hover {
+            color: #fff;
+        }
+
+        /* Supported sites grid */
+        .supported-sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .site-card {
+            padding: 2rem;
+            background: rgba(0,0,0,0.4);
+            border: 2px solid #4b2c23;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .site-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(226, 182, 88, 0.2);
+        }
+
+        .site-card i {
+            color: #e2b658;
+        }
+
+        .site-card h3 {
+            color: #e2b658;
+            margin: 1rem 0;
+        }
+
+        .site-card p {
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Update FAQ styles */
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 2px solid #4b2c23;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .request-site-wrapper {
+            padding-top: 2rem;
+            border-top: 2px solid #4b2c23;
+        }
+
+        .request-site-btn {
+            background: linear-gradient(to bottom, #4b2c23 0%, #2b1810 100%);
+            color: #e2b658 !important;
+            border: 2px solid #e2b658;
+        }
+
+        .request-site-btn:hover {
+            background: linear-gradient(to bottom, #5d372c 0%, #3d2318 100%);
+            transform: scale(1.05);
+            color: #e2b658 !important;
+        }
+
+        /* Simplified sites list */
+        .sites-list {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .site-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: rgba(0,0,0,0.4);
+            border: 2px solid #4b2c23;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .site-item:hover {
+            transform: translateX(10px);
+            background: rgba(0,0,0,0.6);
+        }
+
+        .site-item i {
+            font-size: 1.5rem;
+            color: #e2b658;
+        }
+
+        .site-item a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .site-item a:hover {
+            color: #e2b658;
+        }
+
+        /* Update request button style */
+        .request-site-btn {
+            background: rgba(0,0,0,0.6);
+            color: #e2b658 !important;
+            border: 2px solid #e2b658;
+            padding: 12px 30px;
+        }
+
+        .request-site-btn:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.05);
+        }
+
+        /* Site number style */
+        .site-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e2b658;
+            background: rgba(0,0,0,0.4);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            border: 2px solid #4b2c23;
+        }
+
+        /* Update suggestion text color */
+        .suggestion-text {
+            color: #e2b658 !important;
+            font-size: 1.1rem;
+        }
+
+        /* Navbar link hover effect */
+        .navbar-nav .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #e2b658 !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Active link style */
+        .navbar-nav .nav-link.active {
+            color: #e2b658 !important;
+        }
+
+        /* Sticky navbar styles */
+        .navbar.sticky-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        /* Add padding to body to prevent content from hiding under navbar */
+        body {
+            padding-top: 71px; /* Height of your navbar */
+        }
+
+        /* Optional: Shrink navbar on scroll */
+        .navbar.sticky-top.scrolled {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            background: rgba(0,0,0,0.95) !important;
+        }
+
+        /* Optional: Add shadow when scrolled */
+        .navbar.sticky-top.scrolled {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cookie-bite me-2"></i>Cookie Clicker Advisor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">
+                            <i class="fas fa-star me-1"></i>Features
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">
+                            <i class="fas fa-info-circle me-1"></i>How It Works
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">
+                            <i class="fas fa-comments me-1"></i>Reviews
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">
+                            <i class="fas fa-question-circle me-1"></i>FAQ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#supported-sites">
+                            <i class="fas fa-gamepad me-1"></i>Supported Sites
+                        </a>
+                    </li>
+                </ul>
+                <a href="https://chrome.google.com/webstore/detail/xxx" class="btn btn-custom">
+                    <i class="fab fa-chrome me-2"></i>Install
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4">Cookie Clicker Mod Manager v2</h1>
+            <p class="lead">The ultimate tool for managing and customizing your Cookie Clicker mods</p>
+            <a href="https://chrome.google.com/webstore/detail/xxx" class="btn btn-custom btn-lg">
+                <img src="https://www.google.com/chrome/static/images/chrome-logo.svg" alt="Chrome" class="chrome-logo">
+                Add to Chrome - It's Free
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="content-section">
+        <div class="container">
+            <h2>Powerful Features</h2>
+            
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-4">
+                    <div class="content-container">
+                        <div class="feature-title">
+                            <i class="fas fa-puzzle-piece feature-icon"></i>
+                            <h3>Easy Mod Management</h3>
+                        </div>
+                        <p>Install, enable, disable, and manage your Cookie Clicker mods with just a few clicks. Keep your mod collection organized and running smoothly.</p>
+                        <a href="#" class="btn btn-custom mt-3">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="col-md-4">
+                    <div class="content-container">
+                        <div class="feature-title">
+                            <i class="fas fa-code feature-icon"></i>
+                            <h3>Mod Compatibility</h3>
+                        </div>
+                        <p>Automatically checks for mod conflicts and compatibility issues. Ensures your mods work together perfectly without breaking your game.</p>
+                        <a href="#" class="btn btn-custom mt-3">Explore Features</a>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="col-md-4">
+                    <div class="content-container">
+                        <div class="feature-title">
+                            <i class="fas fa-sliders-h feature-icon"></i>
+                            <h3>Custom Settings</h3>
+                        </div>
+                        <p>Customize each mod's settings through an intuitive interface. Save and load different mod configurations for various playstyles.</p>
+                        <a href="#" class="btn btn-custom mt-3">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="content-section">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="content-container">
+                        <img src="cca_screenshot.webp" alt="Cookie Clicker Advisor Screenshot" class="img-fluid rounded">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-container">
+                        <h3>Simple to Use</h3>
+                        <ol class="list-group list-group-flush">
+                            <li class="list-group-item">Install the extension from Chrome Web Store</li>
+                            <li class="list-group-item">Open Cookie Clicker game</li>
+                            <li class="list-group-item">Get instant recommendations and optimize your gameplay</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="content-section">
+        <div class="container">
+            <h2>What Users Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="content-container">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar" class="testimonial-avatar">
+                        <h3>John Doe</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"This extension completely changed my Cookie Clicker game! The recommendations are spot-on and helped me progress much faster."</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="content-container">
+                        <img src="https://i.pravatar.cc/150?img=2" alt="User Avatar" class="testimonial-avatar">
+                        <h3>Sarah Smith</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"The achievement tracking feature is amazing! It helps me focus on what's important and makes the game more enjoyable."</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="content-container">
+                        <img src="https://i.pravatar.cc/150?img=3" alt="User Avatar" class="testimonial-avatar">
+                        <h3>Mike Johnson</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Must-have extension for any Cookie Clicker player! The optimization suggestions are incredibly helpful."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="content-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="content-container">
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>How do I install mods using the manager?</span>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Simply click the extension icon, browse our mod library, and click "Install" on the mods you want. The manager handles all the installation and setup automatically.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Can I use multiple mods at once?</span>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes! The Mod Manager is designed to handle multiple mods simultaneously. It automatically checks for compatibility and helps prevent conflicts between mods.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Will mods affect my save game?</span>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Most mods don't affect your save game, but we recommend backing up your saves before installing new mods. The manager includes a built-in backup feature for extra safety.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>How do I create my own mods?</span>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Check out our mod development guide in the documentation. We provide tools and templates to help you create and share your own Cookie Clicker mods!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Update Supported Sites Section -->
+    <section id="supported-sites" class="content-section">
+        <div class="container">
+            <h2>Supported Sites</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="content-container">
+                        <p class="text-center mb-5">Cookie Clicker Mod Manager v2 works seamlessly with popular Cookie Clicker sites:</p>
+                        
+                        <div class="sites-list">
+                            <div class="site-item">
+                                <span class="site-number">1</span>
+                                <a href="https://cookieclicker.me" target="_blank">CookieClicker.me</a>
+                            </div>
+                            <div class="site-item">
+                                <span class="site-number">2</span>
+                                <a href="https://cookieclicker.app" target="_blank">CookieClicker.app</a>
+                            </div>
+                            <div class="site-item">
+                                <span class="site-number">3</span>
+                                <a href="https://orteil.dashnet.org/cookieclicker/" rel="nofollow" target="_blank">Cookie Clicker Orteil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-light py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 Cookie Clicker Advisor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Add this JavaScript before closing body tag -->
+    <script>
+        // Close all other FAQs and toggle clicked one
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle clicked FAQ
+            faqItem.classList.toggle('active');
+        }
+
+        // Initialize FAQ items in closed state
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        });
+
+        // Highlight active navigation item based on scroll position
+        window.addEventListener('scroll', function() {
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            
+            sections.forEach(section => {
+                let top = section.offsetTop - 100;
+                let bottom = top + section.offsetHeight;
+                let scroll = window.scrollY;
+                let id = section.getAttribute('id');
+                
+                if (scroll >= top && scroll < bottom) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Add scrolled class to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Lazy load background image
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Defer non-critical JavaScript
+        function loadScript(src) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.defer = true;
+            document.body.appendChild(script);
+        }
+
+        // Load Bootstrap JS sau khi trang đã load
+        window.addEventListener('load', function() {
+            loadScript('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js');
+        });
+
+        // Intersection Observer cho lazy loading images
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            lazyImages.forEach(img => imageObserver.observe(img));
+        });
+
+        // Debounce scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimize scroll handler
+        const optimizedScroll = debounce(function() {
+            // Your existing scroll handling code
+        }, 16);
+
+        window.addEventListener('scroll', optimizedScroll);
+    </script>
+</body>
+</html>
